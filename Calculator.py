@@ -1,38 +1,48 @@
 # Projeto Calculadora Simples
 
-valor_resultado = 0
-valor_resultado = float(valor_resultado)
+while True:
+    numero_1 = input('Digite um número: ')
+    numero_2 = input('Digite outro número: ')
+    operador = input('Digite o operador (+-/*): ')
 
-primeiro_numero = input('Digite o primeiro valor: ')
-segundo_numero = input('Digite o segundo valor: ')
+    numeros_validos = None
 
-if not primeiro_numero.isdigit() or not segundo_numero.isdigit():
-    print('Por favor, insira um número válido.')
-    exit()
-else:
-    ...
+    num_1_float = 0
+    num_2_float = 0
+    
+    try:
+        num_1_float = float(numero_1)
+        num_2_float = float(numero_2)
+        numeros_validos = True
+    except:
+        numeros_validos = None
+    
+    if numeros_validos is None:
+        print('Numero inválido inserido.')
+        continue
 
-primeiro_numero = float(primeiro_numero)
-segundo_numero = float(segundo_numero)
+    operadores = '+-/*'
 
-operacao = input('Informe a operacao: [+][-][*][/] ')
+    if operador not in operadores:
+        print('Operador inválido.')
+        continue
 
-if operacao == '+':
-    valor_resultado = primeiro_numero + segundo_numero
-    op_usado = 'soma'
-elif operacao == '-':
-    valor_resultado = primeiro_numero - segundo_numero
-    op_usado = 'subtração'
-elif operacao == '*':
-    valor_resultado = primeiro_numero * segundo_numero
-    op_usado = 'multiplicação'
-elif operacao == '/':
-    valor_resultado = primeiro_numero / segundo_numero
-    op_usado = 'divisão'
-else:
-    print('Insira um operador válido. ')
-
-valor_resultado = float(valor_resultado)
-
-print(f'O resultado da operação:', op_usado, 'entre', primeiro_numero, 'e', segundo_numero,
-      'é igual a', valor_resultado)
+    if len(operador) > 1:
+        print('Digite apenas um operador.')
+        continue
+    
+    if operador == '+':
+        print(f'{num_1_float}+{num_2_float}=', num_1_float + num_2_float)
+    elif operador == '-':
+        print(f'{num_1_float}-{num_2_float}=', num_1_float - num_2_float)
+    elif operador == '/':
+        print(f'{num_1_float}/{num_2_float}=', num_1_float / num_2_float)
+    elif operador == '*':
+        print(f'{num_1_float}*{num_2_float}=', num_1_float * num_2_float)
+    else:
+        print('Breakpoint.')
+    
+    sair = input('Quer sair? [s]im: ').lower().startswith('s')
+    
+    if sair is True:
+        break
